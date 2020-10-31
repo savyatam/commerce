@@ -1,4 +1,4 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fcommerce&project-name=commerce&repo-name=commerce&demo-title=Next.js%20Commerce&demo-description=An%20all-in-one%20starter%20kit%20for%20high-performance%20e-commerce%20sites.&demo-url=https%3A%2F%2Fdemo.vercel.store&demo-image=https%3A%2F%2Fbigcommerce-demo-asset-ksvtgfvnd.vercel.app%2Fbigcommerce.png&integration-ids=oac_MuWZiE4jtmQ2ejZQaQ7ncuDT)
+
 
 # Next.js Commerce
 
@@ -68,8 +68,6 @@ Our commitment to Open Source can be found [here](https://vercel.com/oss).
 2. Create a new branch `git checkout -b MY_BRANCH_NAME`
 3. Install yarn: `npm install -g yarn`
 4. Install the dependencies: `yarn`
-5. Duplicate `.env.template` and rename it to `.env.local`.
-6. Add proper store values to `.env.local`.
-7. Run `yarn dev` to build and watch for code changes
-8. The development branch is `development` (this is the branch pull requests should be made against).
+5. Run `yarn dev` to build and watch for code changes
+6. The development branch is `development` (this is the branch pull requests should be made against).
    On a release, the relevant parts of the changes in the `staging` branch are rebased into `master`.
