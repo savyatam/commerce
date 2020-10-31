@@ -8,13 +8,13 @@ import { Container, Text } from '@components/ui'
 import { WishlistCard } from '@components/wishlist'
 import { Transition } from '@headlessui/react'
 
-export default function Wishlist() {
+export default function Upcoming() {
   const { data, isEmpty } = function() { return; };
 
   return (
     <Container>
       <div className="mt-3 mb-20">
-        <Text variant="pageHeading">My Wishlist</Text>
+        <Text variant="pageHeading">Upcoming events</Text>
         <div className="group flex flex-col">
           {isEmpty ? (
             <Transition show>
@@ -63,4 +63,4 @@ export default function Wishlist() {
   )
 }
 
-Wishlist.Layout = Layout
+Upcoming.Layout = Layout

@@ -1,4 +1,4 @@
-import cn from 'classnames'
+/*import cn from 'classnames'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -221,4 +221,4 @@ export default function Search({
   )
 }
 
-Search.Layout = Layout
+Search.Layout = Layout*/

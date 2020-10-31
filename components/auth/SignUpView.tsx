@@ -3,7 +3,7 @@ import { validate } from 'email-validator'
 import { Info } from '@components/icons'
 import { useUI } from '@components/ui/context'
 import { Logo, Button, Input } from '@components/ui'
-import useSignup from '@bigcommerce/storefront-data-hooks/use-signup'
+//import useSignup from '@bigcommerce/storefront-data-hooks/use-signup'
 
 interface Props {}
 
@@ -18,7 +18,7 @@ const SignUpView: FC<Props> = () => {
   const [dirty, setDirty] = useState(false)
   const [disabled, setDisabled] = useState(false)
 
-  const signup = useSignup()
+  const signup = function() { return; };
   const { setModalView, closeModal } = useUI()
 
   const handleSignup = async (e: React.SyntheticEvent<EventTarget>) => {

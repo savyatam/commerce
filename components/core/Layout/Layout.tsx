@@ -1,9 +1,9 @@
 import { FC, useCallback, useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
-import type { Page } from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
+//import type { Page } from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
 import { CommerceProvider } from '@bigcommerce/storefront-data-hooks'
-import { CartSidebarView } from '@components/cart'
+//import { CartSidebarView } from '@components/cart'
 import { Container, Sidebar, Button, Modal, Toast } from '@components/ui'
 import { Navbar, Featurebar, Footer } from '@components/core'
 import { LoginView, SignUpView, ForgotPassword } from '@components/auth'
@@ -68,7 +68,7 @@ const Layout: FC<Props> = ({ children, pageProps }) => {
         <main className="fit">{children}</main>
         <Footer pages={pageProps.pages} />
         <Sidebar open={displaySidebar} onClose={closeSidebar}>
-          <CartSidebarView />
+          
         </Sidebar>
 
         <Modal open={displayModal} onClose={closeModal}>

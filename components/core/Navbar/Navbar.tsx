@@ -20,14 +20,14 @@ const Navbar: FC<Props> = ({ className }) => {
             </a>
           </Link>
           <nav className="space-x-4 ml-6 hidden lg:block">
-            <Link href="/">
-              <a className={s.link}>All</a>
+            <Link href="/artists">
+              <a className={s.link}>All Artists</a>
             </Link>
-            <Link href="/search?q=clothes">
-              <a className={s.link}>Clothes</a>
+            <Link href="/sessions">
+              <a className={s.link}>Sessions</a>
             </Link>
-            <Link href="/search?q=accessories">
-              <a className={s.link}>Accessories</a>
+            <Link href="/upcoming">
+              <a className={s.link}>Upcoming</a>
             </Link>
           </nav>
         </div>

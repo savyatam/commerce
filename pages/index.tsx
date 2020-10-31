@@ -1,141 +1,80 @@
 import { useMemo } from 'react'
-import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-import { getConfig } from '@bigcommerce/storefront-data-hooks/api'
-import getAllProducts from '@bigcommerce/storefront-data-hooks/api/operations/get-all-products'
-import getSiteInfo from '@bigcommerce/storefront-data-hooks/api/operations/get-site-info'
-import getAllPages from '@bigcommerce/storefront-data-hooks/api/operations/get-all-pages'
-import rangeMap from '@lib/range-map'
+//import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { Layout } from '@components/core'
-import { Grid, Marquee, Hero } from '@components/ui'
-import { ProductCard } from '@components/product'
-import HomeAllProductsGrid from '@components/core/HomeAllProductsGrid'
+import { Container } from '@components/ui'
 
-export async function getStaticProps({
-  preview,
-  locale,
-}: GetStaticPropsContext) {
-  const config = getConfig({ locale })
-
-  const { products: featuredProducts } = await getAllProducts({
-    variables: { field: 'featuredProducts', first: 6 },
-    config,
-    preview,
-  })
-  const { products: bestSellingProducts } = await getAllProducts({
-    variables: { field: 'bestSellingProducts', first: 6 },
-    config,
-    preview,
-  })
-  const { products: newestProducts } = await getAllProducts({
-    variables: { field: 'newestProducts', first: 12 },
-    config,
-    preview,
-  })
-  const { categories, brands } = await getSiteInfo({ config, preview })
-  const { pages } = await getAllPages({ config, preview })
-
-  return {
-    props: {
-      featuredProducts,
-      bestSellingProducts,
-      newestProducts,
-      categories,
-      brands,
-      pages,
-    },
-    revalidate: 10,
-  }
-}
-
-const nonNullable = (v: any) => v
-
-export default function Home({
-  featuredProducts,
-  bestSellingProducts,
-  newestProducts,
-  categories,
-  brands,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { featured, bestSelling } = useMemo(() => {
-    // Create a copy of products that we can mutate
-    const products = [...newestProducts]
-    // If the lists of featured and best selling products don't have enough
-    // products, then fill them with products from the products list, this
-    // is useful for new commerce sites that don't have a lot of products
-    return {
-      featured: rangeMap(6, (i) => featuredProducts[i] ?? products.shift())
-        .filter(nonNullable)
-        .sort((a, b) => a.node.prices.price.value - b.node.prices.price.value)
-        .reverse(),
-      bestSelling: rangeMap(
-        6,
-        (i) => bestSellingProducts[i] ?? products.shift()
-      ).filter(nonNullable),
-    }
-  }, [newestProducts, featuredProducts, bestSellingProducts])
-
+export default function Home() {
   return (
-    <div>
-      <Grid>
-        {featured.slice(0, 3).map(({ node }, i) => (
-          <ProductCard
-            key={node.path}
-            product={node}
-            // The first image is the largest one in the grid
-            imgWidth={i === 0 ? 1600 : 820}
-            imgHeight={i === 0 ? 1600 : 820}
-            priority
-          />
-        ))}
-      </Grid>
-      <Marquee variant="secondary">
-        {bestSelling.slice(3, 6).map(({ node }) => (
-          <ProductCard
-            key={node.path}
-            product={node}
-            variant="slim"
-            imgWidth={320}
-            imgHeight={320}
-          />
-        ))}
-      </Marquee>
-      <Hero
-        headline="Release Details: The Yeezy BOOST 350 V2 ‘Natural'"
-        description="
-        The Yeezy BOOST 350 V2 lineup continues to grow. We recently had the
-        ‘Carbon’ iteration, and now release details have been locked in for
-        this ‘Natural’ joint. Revealed by Yeezy Mafia earlier this year, the
-        shoe was originally called ‘Abez’, which translated to ‘Tin’ in
-        Hebrew. It’s now undergone a name change, and will be referred to as
-        ‘Natural’."
-      />
-      <Grid layout="B">
-        {featured.slice(3, 6).map(({ node }, i) => (
-          <ProductCard
-            key={node.path}
-            product={node}
-            // The second image is the largest one in the grid
-            imgWidth={i === 1 ? 1600 : 820}
-            imgHeight={i === 1 ? 1600 : 820}
-          />
-        ))}
-      </Grid>
-      <Marquee>
-        {bestSelling.slice(0, 3).map(({ node }) => (
-          <ProductCard
-            key={node.path}
-            product={node}
-            variant="slim"
-            imgWidth={320}
-            imgHeight={320}
-          />
-        ))}
-      </Marquee>
-      <HomeAllProductsGrid
-        categories={categories}
-        brands={brands}
-        newestProducts={newestProducts}
-      />
+    <div className="pb-20">
+      <div className="text-center pt-40 pb-56 bg-black">
+        <Container>
+          <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-white sm:text-5xl sm:leading-none md:text-6xl">
+           A Backstage experience like never before
+          </h2>
+          <p className="mt-3 max-w-md mx-auto text-gray-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+          Live from their sofa to yours.
+          Get closer to your favorite artists, and never miss out.</p><p>
+
+          </p>
+          <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-12">
+            <div className="flex">
+              <div className="flex-shrink-0 inline-flex rounded-full border-2 border-white">
+                <img
+                  className="h-12 w-12 rounded-full"
+                  src="https://vercel.com/api/www/avatar/61182a9f6bda512b4d9263c9c8a60aabe0402f4c?s=204"
+                  alt="Avatar"
+                />
+              </div>
+              <div className="ml-4">
+                <div className="leading-6 font-medium text-white">
+                  Mr.Bean
+                </div>
+                <div className="leading-6 font-medium text-gray-200">
+                  CEO, MyHomeJam
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+      <Container>
+        <div className="-mt-96 mx-auto">
+          <img src="/jacket.png" alt="Jacket" />
+        </div>
+        {/** Replace by HTML Content */}
+        <div className="text-lg leading-7 font-medium py-6 text-justify max-w-6xl mx-auto">
+          <p className="py-6">
+            Biscuit oat cake wafer icing ice cream tiramisu pudding cupcake.
+            Candy canes bonbon dragée jujubes chocolate bar. Cotton candy gummi
+            bears toffee cake muffin caramels. Gummi bears danish liquorice ice
+            cream pie chocolate cake lemon drops tootsie roll tart. Biscuit
+            gingerbread fruitcake cake powder pudding cotton candy chocolate
+            bar. Sweet donut marshmallow powder gummies jelly tart powder.
+            Cheesecake bonbon caramels cupcake jujubes halvah donut dessert
+            chocolate bar. Jelly gummies liquorice lollipop chocolate bar
+            chocolate cake sugar plum. Lollipop toffee dragée chocolate bar
+            jelly beans biscuit. Halvah danish cheesecake. Tiramisu donut
+            lollipop pie donut caramels tiramisu. Jujubes candy canes pudding
+            danish fruitcake chupa chups jujubes carrot cake bonbon. Halvah
+            donut jelly halvah bonbon.
+          </p>
+          <p className="py-6">
+            Biscuit sugar plum sweet chocolate cake sesame snaps soufflé
+            topping. Gummies topping bonbon chocolate pudding cookie. Wafer
+            icing cake pastry. Gummies candy dessert chupa chups lemon drops.
+            Soufflé marshmallow oat cake chocolate jelly-o caramels pie marzipan
+            jelly beans. Cheesecake liquorice donut jujubes halvah ice cream
+            cotton candy cupcake sugar plum. Ice cream ice cream sweet roll
+            fruitcake icing. Muffin candy canes bonbon croissant gummies lemon
+            drops pie danish. Oat cake chocolate toffee cake jelly tart
+            caramels. Sweet donut cheesecake pastry pie sweet. Bonbon lollipop
+            brownie. Soufflé pudding macaroon cotton candy gingerbread. Biscuit
+            macaroon gummi bears candy canes chocolate cake lemon drops
+            marshmallow. Chocolate cake cotton candy marshmallow cake sweet
+            tootsie roll bonbon carrot cake sugar plum.
+          </p>
+        </div>
+      </Container>
     </div>
   )
 }

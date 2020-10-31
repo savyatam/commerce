@@ -1,6 +1,6 @@
 import { FC, useEffect, useState, useCallback } from 'react'
 import { Logo, Button, Input } from '@components/ui'
-import useLogin from '@bigcommerce/storefront-data-hooks/use-login'
+//import useLogin from '@bigcommerce/storefront-data-hooks/use-login'
 import { useUI } from '@components/ui/context'
 import { validate } from 'email-validator'
 
@@ -16,7 +16,7 @@ const LoginView: FC<Props> = () => {
   const [disabled, setDisabled] = useState(false)
   const { setModalView, closeModal } = useUI()
 
-  const login = useLogin()
+  const login = function() { return undefined; };
 
   const handleLogin = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault()
